@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="counter.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="cont">
+                <div class="contents">
+                    <div class="education">
+                        <img src="img/Badge.svg" alt="">
+                    </div>
+                    <div class="text-frame">
+                        <div class="main-text">
+                            <div class="riddey">Upgrade to Riddey PRO and boost productivity!</div>
+                            <div class="main-2">Lorem ipsum dolor sit amet consectetur adipisicing!</div>
+                        </div>
+                        <div class="features">
+                            <div class="feature">
+                                <div class="pipe">
+                                    <img src="img/Vector.svg" alt="">
+                                </div>
+                                <div>
+                                    <h4><b>Feature #1</b> - Etiam convallis, nibh vitae dui risus</h4>
+                                </div>
+
+                            </div>
+                            <div class="feature">
+                                <div class="pipe">
+                                    <img src="img/Vector.svg" alt="">
+                                </div>
+                                <div>
+                                    <h4><b>Feature #2</b> - Etiam convallis, nibh vitae dui risus</h4>
+                                </div>
+
+                            </div>
+                            <div class="feature">
+                                <div class="pipe">
+                                    <img src="img/Vector.svg" alt="">
+                                </div>
+                                <div>
+                                    <h4><b>Feature #3</b> - Etiam convallis, nibh vitae dui risus</h4>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="usage">
+                            <p>Current usage</p>
+                            <div class="counter">
+                                <p class="counter-display"></p>
+                                <p>out of 10 boards in use</p>
+                            </div>
+                            <div class="progress">
+                                <div id="bar"></div>
+                            </div>
+                        </div>
+                        <button id="btn-1" onclick="move() , disableBtn()" class="counter-plus">Add New
+                            Board</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let counterDisplayElem = document.querySelector('.counter-display');
+        let counterPlusElem = document.querySelector('.counter-plus');
+
+        let count = 0;
+        updateDisplay();
+
+
+        counterPlusElem.addEventListener("click", () => {
+            count++;
+
+            if (count > 10) {
+
+                return;
+            }
+            updateDisplay();
+        });
+
+        function updateDisplay() {
+            counterDisplayElem.innerHTML = count;
+        };
+
+        function getProgress() {
+            return document.getElementById("bar").getAttribute("aria-valuenow");
+            return document.getElementById("bar").getAttribute("style", "width");
+            return document.getElementById("bar").innerHTML;
+        }
+
+        function setProgress(value) {
+            document.getElementById("bar").setAttribute("aria-valuenow", value);
+            document.getElementById("bar").setAttribute("style", "width: " + value + "%");
+
+        }
+
+        function move() {
+            let i = getProgress();
+            if (i < 100) {
+                i++;
+                setProgress(i + 9);
+            }
+        }
+
+        function disableBtn() {
+            let i = getProgress();
+            if (i == 100) {
+                document.getElementById("btn-1").disabled = true;
+                document.getElementById("btn-1").style.background = "#883D35";
+                document.getElementById("btn-1").style.opacity = "0.4";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
